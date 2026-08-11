@@ -2,13 +2,14 @@ import prisma from '../../prisma/client'
 
 const getAllUsers = async (username: string, email: string, includeBookings: boolean = true, includeReviews: boolean = true, includePassword: boolean = false) => {
 
-  let where = {}
+  const clauses = []
   if (username) {
-    where = { username: username, ...where }
+    clauses.push( { username: username } )
   }
-  else if (email) {
-    where = { email: email, ...where }
+  if (email) {
+    clauses.push( { email: email } )
   }
+  const where = (clauses.length > 1) ? { AND: clauses } : (clauses.length == 1 ) ? clauses[0] : {}
 
   const users = await prisma.user.findMany({
     where: where,

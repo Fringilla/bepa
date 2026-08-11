@@ -4,13 +4,14 @@ import { Prisma } from '../../prisma/generated/client'
 const getAllProperties = async (location: string, pricePerNight: number, includeHost: boolean = true, includeBookings: boolean = true, includeReviews: boolean = true) => {
 
   const clauses = []
-  if (pricePerNight) {
-    clauses.push( { pricePerNight: pricePerNight } )
-  }
   if (location) {
     clauses.push( { location: location } )
   }
+  if (pricePerNight) {
+    clauses.push( { pricePerNight: pricePerNight } )
+  }
   const where = (clauses.length > 1) ? { AND: clauses } : (clauses.length == 1 ) ? clauses[0] : {}
+  
   const many = await prisma.property.findMany({
     where: where,
     select: {
