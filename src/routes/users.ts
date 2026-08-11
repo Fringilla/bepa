@@ -15,8 +15,8 @@ usersRouter.get(
   '/',
   async (req: any, res: any, next: any) => {
     try {
-      const users = await getAllUsers()
-
+      const { username, email } = req.query
+      const users = await getAllUsers(username, email)
       if (users) {
         return res.status(200).json(users)
       }
