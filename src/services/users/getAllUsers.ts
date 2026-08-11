@@ -25,7 +25,7 @@ const getAllUsers = async (username: string, email: string, includeBookings: boo
       // _count: true,
     }
   })
-  if (users.length > 0)
+  if (users && users.length > 0)
     return users
 }
 

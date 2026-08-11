@@ -14,7 +14,8 @@ router.get(
   '/',
   async (req: any, res: any, next: any) => {
     try {
-      const result = await getAllBookings()
+      const { userId } = req.query
+      const result = await getAllBookings(userId)
 
       if (result) {
         return res.status(200).json(result)
