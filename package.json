@@ -1,0 +1,41 @@
+{
+  "name": "express-booking-api",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Your REST API for managing bookings",
+  "main": "src/index.ts",
+  "author": {
+    "name": "Patrick Vink",
+    "email": "patrickvink@hotmail.com"
+  },
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsx ./src/index.ts",
+    "test-positive": "newman run \"./postman/collections/Bookings API.json\" -e \"./postman/environments/Local.postman_environment.json\"",
+    "test-negative": "newman run \"./postman/collections/Bookings API Negative.json\" -e \"./postman/environments/Local.postman_environment.json\"",
+    "test": "npm run test-positive && npm run test-negative",
+    "reset-db": "npx prisma db push --force-reset && npx prisma db seed",
+    "clean-start": "npx prisma db push --force-reset && npx prisma db seed && npm run dev"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.9.1",
+    "@prisma/client": "^7.9.1",
+    "express": "5.1.0",
+    "http": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "8.20.0",
+    "winston": "^3.19.0"
+  },
+  "devDependencies": {
+    "@types/express": "5.0.5",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "22.18.12",
+    "@types/pg": "8.20.0",
+    "dotenv": "17.3.1",
+    "newman": "^6.2.2",
+    "nodemon": "^3.1.14",
+    "prisma": "^7.9.1",
+    "tsx": "4.21.0",
+    "typescript": "5.8.2"
+  }
+}

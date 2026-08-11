@@ -1,0 +1,100 @@
+generator client {
+  provider   = "prisma-client"
+  output     = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+  relationMode = "foreignKeys"
+}
+
+// model Amenity {
+//   id   String @id @default(uuid())
+//   name String @unique
+
+// @@index(name)
+// }
+
+model User {
+  id          String    @id @default(uuid())
+  username    String    @unique
+  password    String
+  name        String
+  email       String
+  phoneNumber String?
+  pictureUrl  String?
+  bookings    Booking[]
+  reviews     Review[]
+
+@@index(username)
+@@index(email)
+}
+
+model Host {
+  id          String    @id @default(uuid())
+  username    String    @unique
+  password    String
+  name        String
+  email       String
+  phoneNumber String?
+  pictureUrl  String?
+  aboutMe     String?
+  listings    Property[]
+
+@@index(username)
+@@index(email)
+}
+
+model Property {
+  id            String     @id @default(uuid())
+  title         String
+  description   String?
+  location      String
+  pricePerNight Decimal
+  bedroomCount  Int        @default(1)
+  bathRoomCount Int        @default(0)
+  maxGuestCount Int        @default(1)
+  rating        Int
+  hostId        String
+  host          Host?      @relation(fields: [hostId], references: [id], onDelete: Cascade)
+  bookings      Booking[]
+  reviews       Review[]
+
+@@index(title)
+@@index(location)
+@@index(pricePerNight)
+@@index(bedroomCount)
+@@index(bathRoomCount)
+@@index(maxGuestCount)
+@@index(rating)
+@@index(hostId)
+}
+
+model Booking {
+  id             String    @id @default(uuid())
+  checkinDate    DateTime
+  checkoutDate   DateTime
+  numberOfGuests Int       @default(1)
+  totalPrice     Decimal
+  bookingStatus  String    @default("pending")
+  propertyId     String
+  property       Property? @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  userId         String    
+  user           User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+@@index(propertyId)
+@@index(userId)
+}
+
+model Review {
+  id         String    @id @default(uuid())
+  rating     Int
+  comment    String
+  propertyId String
+  property   Property? @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+@@index(propertyId)
+@@index(userId)
+}
