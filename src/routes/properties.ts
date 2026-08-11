@@ -14,7 +14,8 @@ router.get(
   '/',
   async (req: any, res: any, next: any) => {
     try {
-      const result = await getAllProperties()
+      const { location, pricePerNight } = req.query
+      const result = await getAllProperties(location, Number(pricePerNight))
       if (result) {
         return res.status(200).json(result)
       }

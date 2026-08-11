@@ -22,7 +22,8 @@ const getAllHosts = async (includeListings: boolean = true, includePassword: boo
       // _count: true,
     } 
   })
-  return hosts
+  if (hosts && hosts.length > 0)
+    return hosts
 }
 
 export default getAllHosts

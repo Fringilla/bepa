@@ -15,7 +15,7 @@ const getAllReviews = async (includeUser: boolean = true, includeProperty: boole
     } 
   })
 
-  if (many)
+  if (many && many.length > 0)
     return many
 }
 
