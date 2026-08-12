@@ -1,11 +1,20 @@
 import prisma from '../../prisma/client'
 
+/**
+ * Gets all bookings optional filtered by userId
+ * @param userId 
+ * @param includeUser 
+ * @param includeProperty 
+ * @returns 
+ */
 const getAllBookings = async (userId: string, includeUser: boolean = true, includeProperty: boolean = true) => {
 
-  let where = {}
+  const clauses = []
   if (userId) {
-    where = { userId, ...where }
+    clauses.push( { userId: userId } )
   }
+  const where = (clauses.length > 1) ? { AND: clauses } : (clauses.length == 1 ) ? clauses[0] : {}
+
   const many = await prisma.booking.findMany({
     where: where,
     select: {

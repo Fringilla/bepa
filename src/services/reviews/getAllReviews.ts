@@ -1,5 +1,11 @@
 import prisma from '../../prisma/client'
 
+/**
+ * Gets all reviews
+ * @param includeUser 
+ * @param includeProperty 
+ * @returns 
+ */
 const getAllReviews = async (includeUser: boolean = true, includeProperty: boolean = true) => {
 
   const many = await prisma.review.findMany({

@@ -1,6 +1,14 @@
 import prisma from '../../prisma/client'
-import { Prisma } from '../../prisma/generated/client'
 
+/**
+ * Gets all properties optional filtered by location and/or pricePerNight
+ * @param location 
+ * @param pricePerNight 
+ * @param includeHost 
+ * @param includeBookings 
+ * @param includeReviews 
+ * @returns 
+ */
 const getAllProperties = async (location: string, pricePerNight: number, includeHost: boolean = true, includeBookings: boolean = true, includeReviews: boolean = true) => {
 
   const clauses = []

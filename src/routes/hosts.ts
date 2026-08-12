@@ -15,7 +15,8 @@ hostsRouter.get(
   '/',
   async (req: any, res: any, next: any) => {
     try {
-      const hosts = await getAllHosts()
+      const { name } = req.query
+      const hosts = await getAllHosts(name)
       if (hosts) {
         return res.status(200).json(hosts)
       }

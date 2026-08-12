@@ -1,5 +1,14 @@
 import prisma from '../../prisma/client'
 
+/**
+ * Gets all users optional filtered by username and/or email
+ * @param username 
+ * @param email 
+ * @param includeBookings 
+ * @param includeReviews 
+ * @param includePassword 
+ * @returns 
+ */
 const getAllUsers = async (username: string, email: string, includeBookings: boolean = true, includeReviews: boolean = true, includePassword: boolean = false) => {
 
   const clauses = []
