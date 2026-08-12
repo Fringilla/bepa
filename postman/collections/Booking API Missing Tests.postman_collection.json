@@ -1,0 +1,147 @@
+{
+  "info": {
+    "_postman_id": "c6c7aa0d-f55c-43b5-becd-d0526bbe0ad4",
+    "name": "Booking API Missing Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "2955977"
+  },
+  "item": [
+    {
+      "name": "getAllBookings?userId=a1234567-89ab-cdef-0123-456789abcdef",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{bearerToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/bookings?userId=a1234567-89ab-cdef-0123-456789abcdef",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "bookings"
+          ],
+          "query": [
+            {
+              "key": "userId",
+              "value": "a1234567-89ab-cdef-0123-456789abcdef"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getAllUsers?username&email",
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {
+          "content-type": true
+        }
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/users?email=johndoe@example.com&username=jdoe",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "johndoe@example.com"
+            },
+            {
+              "key": "username",
+              "value": "jdoe"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getAllHosts?name",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/hosts?name=John+Doe",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "hosts"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "John+Doe"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getAllProperties?location&pricePerNight",
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {
+          "content-type": true
+        }
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/properties?location=Malibu, California&pricePerNight=310.25",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "properties"
+          ],
+          "query": [
+            {
+              "key": "location",
+              "value": "Malibu, California"
+            },
+            {
+              "key": "pricePerNight",
+              "value": "310.25"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
